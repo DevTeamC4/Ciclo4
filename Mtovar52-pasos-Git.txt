@@ -1,0 +1,97 @@
+
+-------------------------------------------PASO A PASO-----------------------------------------------------------
+git init
+git clone https://github.com/eliteshoes/Grupo2728.git
+git status
+cd Grupo2728  -> para ingresar al repositorio clonado
+crear un archivo (ejemplo txt ) local dentro de la  carpeta Repositorios 
+git branch   --> para crear una rama nueva
+git checkout -> para saber en que rama estas, sino estas en la que corresponde digitar
+git checkout nombre_rama
+git checkout -> verificar que hayas entrado a la rama que perteneces para hacer el commit
+git show --> para ver todos los cambios que se han hecho.
+git status  -> va aparecer el archivo.txt  creado en color rojo
+git add .
+git commit -am "mensaje"         ----------------------------------------------------------- > hacer el add y commit al tiempo
+
+--------------------------------------------------------------------------------------------------------------------------------------
+git commit -m " mensaje cualquiera"
+git push origin nombre_rama
+
+Para verificar entras a Github de eliteshoes y buscas el repositorio y seleccionas tu rama 
+o validas con la scrum si ya aparece reflejado el commit realizado.
+
+
+--------------------------------Comandos básicos de GitHub---------------------------------------------------------------------------------------------
+
+git init: crear un repositorio.
+git add: agregar un archivo a staging.
+git commit -m “mensaje”: guardar el archivo en git con un mensaje.
+git branch: crear una nueva rama.
+git checkout: moverse entre ramas.
+git push: mandar cambios a un servidor remoto.
+git fetch: traer actualizaciones del servidor remoto y guardarlas en nuestro repositorio local.
+git merge: tiene dos usos. Uno es la fusión de ramas, funcionando como un commit en la rama actual, trayendo la rama indicada. Su otro uso es guardar los cambios de un servidor remoto en nuestro directorio.
+git pull: fetch y merge al mismo tiempo.
+-------------------------------Comandos para corrección en GitHub----------------------------------------------------------------------------------------
+
+git checkout “codigo de version” “nombre del archivo”: volver a la última versión de la que se ha hecho commit.
+git reset: vuelve al pasado sin posibilidad de volver al futuro, se debe usar con especificaciones.
+git reset --soft: vuelve a la versión en el repositorio, pero guarda los cambios en staging. Así, podemos aplicar actualizaciones a un nuevo commit.
+git reset --hard: todo vuelve a su versión anterior
+git reset HEAD: saca los cambios de staging, pero no los borra. Es lo opuesto a git add.
+git rm: elimina los archivos, pero no su historial. Si queremos recuperar algo, solo hay que regresar. se utiliza así:
+git rm --cached elimina los archivos en staging pero los mantiene en el disco duro.
+git rm --force elimina los archivos de git y del disco duro.
+-------------------------------Comandos para revisión y comparación en GitHub-----------------------------------------------------------------------------
+
+git status: estado de archivos en el repositorio.
+git log: historia entera del archivo.
+git log --stat: cambios específicos en el archivo a partir de un commit.
+git show: cambios históricos y específicos hechos en un archivo.
+git diff “codigo de version 1” “codigo de version 2”: comparar cambios entre versiones.
+git diff: comparar directorio con staging.
+
+-------------------------------------ALGUNOS COMANDOS extras----------------------------------------------------------------------------------
+pwd -----> para ver donde estoy
+ls ------> que archivos tengo
+mkdir nombreCarpeta --------> para crear una carpeta
+touch name.txt ------> para crear un archivo texto plano
+cat   name.txt ------> para ver lo que contiene el archivo plano
+merge -----> unir ramas para obtener a version nueva final
+
+
+
+------------------------------------VOLVER A UNA VERSION ANTERIOR Ejemplo-------------------------------------
+git reset "codigo de la version" --soft     
+EJEMPLO 1
+git reset 2c48ad0813b0d2d3348de2c5f2b1e0c4ac2cb1c5 --soft             devuelve todo a la version anterior forma suave
+git reset "codigo de la version" --hard   
+EJEMPLO 2
+git reset 2c48ad0813b0d2d3348de2c5f2b1e0c4ac2cb1c5 --soft             devuelve todo a la version anterior forma agresiva borra todas la versiones actuales
+EJEMPLO 3 
+git checkout 2c48ad0813b0d2d3348de2c5f2b1e0c4ac2cb1c5 nombreDelArchivo_a_Modificar
+
+--------------------------------------FUCIONAR RAMAS ejemplo---------------------------------------------------------
+En este ejemplo, vamos a crear un nuevo commit en la rama master combinando los cambios de una rama llamada cabecera:
+ 
+git checkout master
+git merge cabecera
+
+Otra opción es crear un nuevo commit en la rama cabecera combinando los cambios de cualquier otra rama:
+git checkout cabecera
+git merge cualquier-otra-rama
+
+echo "# ensayo" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/....
+git push -u origin main
+
+
+git branch MauricioTovar
+git branch
+git checkout MauricioTovar
+git push --set-upstream origin MauricioTovar
