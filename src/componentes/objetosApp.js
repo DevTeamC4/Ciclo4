@@ -1,17 +1,20 @@
 import { useState } from "react";
 import Objetos from "./objetos";
+import '../styles/objetos.css';
 
 export default function ObjetosApp() {
     //usestate es un hook para generar eventos
     //etiqueta =Getter ; setetiqueta = Setter
-    const [etiqueta, setEtiqueta] = useState('ingreso');
+    const [etiqueta, setEtiqueta] = useState('');
     const [cuerpo, setCuerpo] =useState([]);
 
-    function handleEnviar(evento) {
-        evento.preventDefault();
+    function handleEnviar(e) {
+        e.preventDefault();
         const newObjeto = {
             id: crypto.randomUUID(),
-            etiqueta: etiqueta
+            etiqueta: etiqueta, 
+            stock: false,
+            precio: 0          
         };
         
 
@@ -19,21 +22,36 @@ export default function ObjetosApp() {
         copia.unshift(newObjeto);
         setCuerpo(copia);
         setEtiqueta('');
+        console.log(copia);
+    };
 
-    }
     /*
-    function handleClic(evento) {
-        evento.preventDefault();
+    function handleClic(e) {
+        e.preventDefault();
         setEtiqueta("Cambios");
 
     }
     */
 
-    function handleCambios(evento){
-        const value = evento.target.value;
-        setEtiqueta (value);
+    function handleCambios(e){
+        const value = e.target.value;
+        setEtiqueta(value);
+    
+    };
 
-    }
+    function handleActualizar(id, value){
+        const copia = [...cuerpo];
+        const item = copia.find(item => item.id === id);
+        item.etiqueta = value;
+        setCuerpo(copia);
+    
+    };
+
+    function handleEliminar(id){
+        //se compara con un valor diferente para que lo oculte, más no para eliminarlo
+        const copia = cuerpo.filter(item => item.id !== id);
+        setCuerpo(copia);
+    };
 
 
     return (
@@ -44,21 +62,17 @@ export default function ObjetosApp() {
             >
                 <input
                     className='objInput'
-                    onChange={handleCambios}
-
+                    onChange={handleCambios} 
+                    value={etiqueta}               
                 />
-
                 <input
+                    //onClick={handleClic}
                     onClick={handleEnviar}
-                    lassName='objBoton'
+                    className='objBoton'
                     type="submit"
-                    value="Insertar"
-                />
-
-                {/*
-                {etiqueta}
-                 */}
-
+                    value="Crear Objeto"
+                            
+                />                              
             </form>
 
             <div className="cuerpoContendor">
@@ -68,13 +82,14 @@ export default function ObjetosApp() {
                         <Objetos
                         key={item.id}
                         item={item}
+                        actualizarDatos ={handleActualizar}
+                        onEliminar={handleEliminar}
                         />
                     ))
-
                 }
                 
             </div>
         </div>
 
-    )
+    );
 }
